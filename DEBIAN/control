@@ -1,0 +1,8 @@
+Package:install-ffmpeg
+Version:1.0
+Maintainer:maxbusbuxwr
+Section:misc
+Architecture:all
+Depends:bash
+Description:install full ffmpeg
+
