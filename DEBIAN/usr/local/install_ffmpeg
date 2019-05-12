@@ -142,6 +142,4 @@ wait
 make install
 wait
 ffmpeg
-echo "/usr/local/lib/" >> /etc/ld.so.conf
-wait
-ldconfig
+
