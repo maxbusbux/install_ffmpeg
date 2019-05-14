@@ -5,7 +5,7 @@ if [[ $(id -u) -ne 0 ]]
 fi
 mkdir -p /opt/ffmpeg/src
 wait
-apt install autoconf build-essential automake gcc git libtool make pkgconf zlib1g-dev lua50 zvbi nasm libdvdread-dev libdc1394-22-dev libxcb1-dev xcb libxml2-dev libglu1-mesa-dev libpulse-dev libalsa-ocaml-dev libgcrypt20-dev libgsm1-dev libbluray-dev yasm libva-dev libass-dev libkate-dev libdvdnav-dev libcdd-dev libmpeg2-4-dev libxvidcore-dev libx265-dev libsdl2-dev
+apt install autoconf build-essential automake gcc git libtool make pkgconf zlib1g-dev lua50 zvbi nasm libdvdread-dev libdc1394-22-dev libxcb1-dev xcb libxml2-dev libglu1-mesa-dev libpulse-dev libalsa-ocaml-dev libgcrypt20-dev libgsm1-dev libbluray-dev yasm libva-dev libass-dev libkate-dev libdvdnav-dev libcdd-dev libmpeg2-4-dev libxvidcore-dev libx265-dev libsdl2-dev curl
 wait
 cd /opt/ffmpeg/src
 wait
@@ -136,7 +136,7 @@ cd ffmpeg
 wait
 pwd
 wait
-./configure --enable-gpl --enable-version3 --enable-libfdk_aac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264--enable-libx265 --enable-nonfree --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libgsm --enable-libxvid  --disable-static --enable-shared --enable-sdl2
+./configure --enable-gpl --enable-version3 --enable-libfdk_aac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-nonfree --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libgsm --enable-libxvid  --disable-static --enable-shared --enable-sdl2
 wait
 make -j4
 wait
