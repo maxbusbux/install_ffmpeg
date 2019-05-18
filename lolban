@@ -1,0 +1,3 @@
+#!/bin/bash
+
+toilet -f drpepper.flf "$1" | lolcat 

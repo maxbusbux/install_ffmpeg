@@ -1,147 +1,289 @@
-if [[ $(id -u) -ne 0 ]]
-	then echo "Run as root"
+#!/bin/bash
+if ! [ -x "$(command -v toilet)" ]; then
+  echo  -e "\e[31m [ERROR]Toilet not found\e[0m"
+  exit 1
+fi
+if ! [ -x "$(command -v curl)" ]; then
+	   echo  -e "\e[31m [ERROR]Curl not found\e[0m"
+	  exit 1
+fi
+if ! [ -x "$(command -v lolcat)" ]; then
+	   echo  -e "\e[31m [ERROR]Lolcat not found\e[0m"
+	  exit 1
+fi
+if ! [ -x "$(command -v pv)" ]; then
+	  echo  -e "\e[31m [ERROR]PV not found\e[0m"
+	  exit 1
+fi
+if [[ $(id -u) -ne 0 ]]; then
+ echo  -e "\e[31m [ERROR]Run as root\e[0m"
 	exit
 fi
+./lolban Install_FFMpeg | pv -q -L100 | lolcat
+wait
+sleep 2
+read -p "Enter numbers of CPU cores to use:" core
 mkdir -p /opt/ffmpeg/src
 wait
+sleep 2
+echo -e "\e[32m [INFO]Installing basic tools\e[0m"
+wait
+sleep 2
 apt install autoconf build-essential automake gcc git libtool make pkgconf zlib1g-dev lua50 zvbi nasm libdvdread-dev libdc1394-22-dev libxcb1-dev xcb libxml2-dev libglu1-mesa-dev libpulse-dev libalsa-ocaml-dev libgcrypt20-dev libgsm1-dev libbluray-dev yasm libva-dev libass-dev libkate-dev libdvdnav-dev libcdd-dev libmpeg2-4-dev libxvidcore-dev libx265-dev libsdl2-dev
 wait
+sleep 2
 cd /opt/ffmpeg/src
 wait
+sleep 2
+echo -e "\e[32m [INFO]downloading x264\e[0m"
 git clone git://git.videolan.org/x264.git
 wait
+sleep 2
 cd x264
+sleep 2
 wait
+sleep 2
+echo -e "\e[32m [INFO]Installing x264\e[0m"
 ./configure --enable-shared
 wait
-make -j4
+make -j$core
+sleep 2
 wait
 make install
+sleep 2
 wait
 cd ..
 wait
 pwd
+wait
+echo -e "\e[32m [INFO]Downloding fdk-aac\e[0m"
+wait
+sleep 2
 wait
 git clone --depth 1 git://github.com/mstorsjo/fdk-aac.git
+sleep 2
+wait
+echo -e "\e[32m [INFO]Installing fdk-aac\e[0m"
+wait
+sleep 2
 wait
 cd fdk-aac
+sleep 2
 wait
+sleep 2
 autoreconf -fiv
+sleep 2
+wait
+sleep 2
 wait
 ./configure --enable-shared
 wait
-make -j4
+sleep 2
+wait
+make -j$core
+sleep 2
 wait
 make install
 wait
+sleep 2
 cd ..
 wait
 pwd
 wait
-wget http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+sleep 2
+wait
+echo -e "\e[32m [INFO]Downloding  lame\e[0m"
+curl -LO http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+sleep 2
 wait
 tar xzvf lame-3.99.5.tar.gz
+sleep 2
 wait
+sleep 2
+wait
+echo -e "\e[32m [INFO]Installing lame\e[0m"
 cd lame-3.99.5
 wait
 ./configure --enable-shared --enable-nasm
+sleep 2
 wait
-make -j4
+make -j$core
+sleep 2
 wait
+sleep 2
 make install
+sleep 2
 wait
 cd ..
+sleep 2
 wait
 pwd
+sleep 2
 wait
-wget http://downloads.sourceforge.net/project/opencore-amr/opencore-amr/0.1.2/opencore-amr-0.1.2.tar.gz
+echo -e "\e[32m [INFO]Downloding opencore-amr\e[0m"
 wait
+sleep 2
+curl -LO http://downloads.sourceforge.net/project/opencore-amr/opencore-amr/0.1.2/opencore-amr-0.1.2.tar.gz
+wait
+sleep 2
 tar xzvf opencore-amr-0.1.2.tar.gz
 wait
+sleep 2
+echo -e "\e[32m [INFO]Installing opencore\e[0m"
+wait
+sleep 2
 cd opencore-amr-0.1.2/
+wait
+sleep 2
 wait
 ./configure
 wait
-make -j4
-wait 
+sleep 2
+make -j$core
+wait
+sleep 2
 make install
+sleep 2
 wait
 cd ..
+sleep 2
 wait
 pwd
 wait
-wget http://downloads.xiph.org/releases/ogg/libogg-1.3.0.tar.gz
+echo -e "\e[32m [INFO]Downloding libogg\e[0m"
 wait
+sleep 2
+curl -LO http://downloads.xiph.org/releases/ogg/libogg-1.3.0.tar.gz
+wait
+sleep 2
 tar xzvf libogg-1.3.0.tar.gz
+sleep 2
+echo -e "\e[32m [INFO]Installing libogg\e[0m"
 wait
 cd libogg-1.3.0
 wait
+sleep 2
 ./configure --enable-shared
 wait
-make -j4
+sleep 2
+make -j$core
 wait
+sleep 2
 make install
 wait
+sleep 2
 cd ..
 wait
 pwd
+sleep 2
 wait
-wget http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.gz
+echo -e "\e[32m [INFO]Downloding libtheora\e[0m"
 wait
+sleep 2
+curl -LO http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.gz
+wait
+sleep 2
 tar xzvf libtheora-1.1.1.tar.gz
 wait
+sleep 2
 cd libtheora-1.1.1
+sleep 2
 wait
+echo -e "\e[32m [INFO]Installing libtheora\e[0m"
 ./configure --enable-shared
 wait
-make -j4 
+sleep 2
+make -j$core
 wait
+sleep 2
 make install
 wait
+sleep 2
 cd ..
 wait
+sleep 2
 pwd
 wait
-wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.3.tar.gz
+sleep 2
+echo -e "\e[32m [INFO]Downloding libvorbis\e[0m"
 wait
+sleep 2
+curl -LO http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.3.tar.gz
+wait
+sleep 2
 tar xzvf libvorbis-1.3.3.tar.gz
 wait
+sleep 2
 cd libvorbis-1.3.3
 wait
+sleep 2
+echo -e "\e[32m [INFO]Installing libvorbis\e[0m"
+wait
+sleep 2
 ./configure --enable-shared
 wait
-make -j4
+sleep 2
+make -j$core
 wait
+sleep 2
 make install
 wait
+sleep 2
+echo -e "\e[32m [INFO]Downloding libvpx\e[0m"
+wait
+sleep 2
 git clone https://github.com/webmproject/libvpx
 wait
+sleep 2
 cd libvpx
 wait
+echo -e "\e[32m [INFO]Installing libvpx\e[0m"
+wait
+sleep 2
 ./configure --enable-shared
 wait
-make -j4
+sleep 2
+make -j$core
 wait
+sleep 2
 make install
 wait
+sleep 2
 cd ..
 wait
 pwd
 wait
 cd ..
+echo -e "\e[32m [INFO]Downloding ffmpeg\e[0m"
+wait
+sleep 2
 git clone git://source.ffmpeg.org/ffmpeg
 wait
+sleep 2
 cd ffmpeg
 wait
+sleep 2
 pwd
 wait
+echo -e "\e[32m [INFO]Installing ffmpeg\e[0m"
+wait
+sleep 2
 ./configure --enable-gpl --enable-version3 --enable-libfdk_aac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264--enable-libx265 --enable-nonfree --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libgsm --enable-libxvid  --disable-static --enable-shared --enable-sdl2
 wait
-make -j4
+sleep 2
+make -j$core
 wait
+sleep 2
 make install
 wait
+sleep 2
 ffmpeg
+echo -e "\e[32m [INFO]Fixing library error\e[0m"
+wait
+sleep 2
 echo "/usr/local/lib/" >> /etc/ld.so.conf
 wait
+sleep 2
 ldconfig
+wait
+sleep 1
