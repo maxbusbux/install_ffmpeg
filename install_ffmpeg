@@ -22,6 +22,9 @@ fi
 ./lolban Install_FFMpeg | pv -q -L100 | lolcat
 wait
 sleep 2
+cp install_ffmpeg /usr/local/bin
+wait
+sleep 2
 read -p "Enter numbers of CPU cores to use:" core
 mkdir -p /opt/ffmpeg/src
 wait
@@ -268,7 +271,7 @@ wait
 echo -e "\e[32m [INFO]Installing ffmpeg\e[0m"
 wait
 sleep 2
-./configure --enable-gpl --enable-version3 --enable-libfdk_aac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264--enable-libx265 --enable-nonfree --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libgsm --enable-libxvid  --disable-static --enable-shared --enable-sdl2
+./configure --enable-gpl --enable-version3 --enable-libfdk_aac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-nonfree --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libgsm --enable-libxvid  --disable-static --enable-shared --enable-sdl2
 wait
 sleep 2
 make -j$core
