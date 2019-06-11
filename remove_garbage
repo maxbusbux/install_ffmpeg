@@ -4,4 +4,4 @@ if [[ $(id -u) -ne 0 ]]; then
 	exit
 fi
 echo -e "\e[32m [INFO]Deleting garbage\e[0m"
-sudo rm -rf /opt/ffmpeg/
+sudo rm -rfv /opt/ffmpeg/
